@@ -1,10 +1,20 @@
 import React from "react";
 import { FaPhone } from "react-icons/fa";
 import { FaUser } from "react-icons/fa";
+import { useDispatch } from "react-redux";
+import { deleteContact } from "../../redux/contactsSlice";
+
 import css from "./Contact.module.css";
 
-const Contact = ({ fn, data }) => {
+const Contact = ({ data }) => {
+  const dispatch = useDispatch();
+
   const { id, name, number } = data;
+
+  const fnDelete = () => {
+    dispatch(deleteContact(id));
+  };
+
   return (
     <div className={css.container}>
       <div className={css.right}>
@@ -20,7 +30,7 @@ const Contact = ({ fn, data }) => {
         </div>
       </div>
       <div className={css.left}>
-        <button onClick={() => fn(id)}>Delete</button>
+        <button onClick={fnDelete}>Delete</button>
       </div>
     </div>
   );
