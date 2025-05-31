@@ -1,7 +1,16 @@
 import { useId } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { changeFilter, selectNameFilter } from "../../redux/filtersSlice";
 import css from "./SearchBox.module.css";
 
-const SearchBox = ({ qvalue, qfn }) => {
+const SearchBox = () => {
+  const filter = useSelector(selectNameFilter);
+  const dispatch = useDispatch();
+
+  const qfn = (e) => {
+    dispatch(changeFilter(e.target.value));
+  };
+
   const id = useId();
   return (
     <div className={css.searchBlockWrapper}>
@@ -14,7 +23,7 @@ const SearchBox = ({ qvalue, qfn }) => {
           className={css.searchBoxInput}
           type="text"
           name="sbox"
-          value={qvalue}
+          value={filter}
           onChange={qfn}
         />
       </div>

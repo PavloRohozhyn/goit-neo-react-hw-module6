@@ -4,11 +4,10 @@ import storage from "redux-persist/lib/storage";
 import contactsReducer from "./contactsSlice";
 import filtersReducer from "./filtersSlice";
 
-// Конфігурація для persist
 const contactsPersistConfig = {
   key: "contacts",
   storage,
-  whitelist: ["items"], // Зберігаємо лише items
+  whitelist: ["items"],
 };
 
 const persistedContactsReducer = persistReducer(
